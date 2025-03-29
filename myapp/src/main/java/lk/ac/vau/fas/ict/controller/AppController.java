@@ -61,4 +61,10 @@ public class AppController {
 	   return result; 
 
 	}
+	@GetMapping("/sorted-gpa")
+	public List<Student> getStuByGPA(){
+	    List<Student> sortedList = new ArrayList<>(students);
+	    sortedList.sort((bob,alice)->Double.compare(alice.getGpa(), bob.getGpa()));
+	    return sortedList;
+	}
 }
