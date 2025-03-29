@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -76,4 +77,14 @@ public class AppController {
 	    students.add(student);
 	    return student;
 	}
+	@PutMapping("/update/{id}")
+    public Student updateStudent(@PathVariable("id") String regNo, @RequestBody Student updatedStudent) {
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getRegno().equals(regNo)) {
+                students.set(i, updatedStudent);
+                return updatedStudent;
+            }
+        }
+        return null;
+    }
 }
